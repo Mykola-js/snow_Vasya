@@ -1,0 +1,85 @@
+-
+	var jsLibs= {
+		'$' : "https://code.jquery.com/jquery-2.1.1.min.js",
+		'materialize.min.js' : "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js",	
+		react: 'https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react.min.js',
+		"react-dom": 'https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react-dom.min.js',
+		'react-router-DOM': 'https://cdnjs.cloudflare.com/ajax/libs/react-router-dom/4.2.2/react-router-dom.min.js'
+	}
+	var cssLibs= {
+		normalize : 'https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css',
+		'Material+Icons' : "https://fonts.googleapis.com/icon?family=Material+Icons",
+		'materialize.min.css' : "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css",
+		"fonts-roboto" : "https://fonts.googleapis.com/css?family=Roboto"
+	}
+
+html
+	head
+		if( jsLibs )
+			each lib,libName in jsLibs
+				script(src=lib)
+				//.
+					#{libName}
+		if( cssLibs )
+			each lib,libName in cssLibs
+				link(rel='stylesheet', href=lib)
+				//.
+					#{libName}
+		
+		meta(charset="utf-8")
+		meta(name="viewport", content="width=device-width, initial-scale=1.0")
+	body
+		nav
+			div.nav-wrapper.cyan.lighten-1.hoverable
+				a( href="/#/").brand-logo Logo
+				a(href="/#/" data-activates="mobile-demo").button-collapse
+					i.material-icons menu
+				ul.right.hide-on-med-and-down
+					li
+						a( href="/#/AboutUs").pulse About Us
+					li
+						a( href="/#/Product").pulse Product
+					li
+						a( href="/#/Partners").pulse Partners
+					li
+						a( href="/#/Services").pulse Services
+					li
+						a( href="/#/Contacts").pulse Contacts
+				ul.side-nav#mobile-demo
+					li
+						a( href="/#/AboutUs").pulse About Us
+					li
+						a( href="/#/Product").pulse Product
+					li
+						a( href="/#/Partners").pulse Partners
+					li
+						a( href="/#/Services").pulse Services
+					li
+						a( href="/#/Contacts").pulse Contacts
+		div#container
+		div#one hello
+		div.footer.cyan.lighten-1.z-depth-2
+			div.container  © 2014 Copyright Text
+		script.
+			document.getElementById('container').style.display='none'
+
+			window.addEventListener("hashchange", function(){
+				if(location.hash !== '#/'){
+				document.getElementById('one').style.display='none';
+				document.getElementById('container').style.display='block'
+				} else {
+					document.getElementById('one').style.display='block'
+					document.getElementById('container').style.display='none'
+				;}
+			});
+
+			$(document).ready(function(){
+				$('.button-collapse').sideNav({
+					menuWidth: 300,
+					edge: 'right', 
+					closeOnClick: true,
+					draggable: true,
+					onOpen: function(el) { /\* Do Stuff* / }, 
+					onClose: function(el) { /\* Do Stuff* / }, 
+				}); });  	     
+			
